@@ -17,7 +17,7 @@ function success(pos) {
 
 const reject = async function(err) {
   console.log(`(${err.code}): ${err.message}`)
-  const result = await fetch('http://ip-api.com/json/').catch((e) => {
+  const result = await fetch('https://api.ipgeolocation.io/ipgeo?apiKey=2f01a4b7bdfd407ba61ff84152ee1912').catch((e) => {
     console.log(e)
   })
   let data
@@ -26,8 +26,8 @@ const reject = async function(err) {
       console.log(e)
     })
   }
-  latitude = data.lat
-  longitude = data.lon
+  longitude = data.longitude
+  latitude = data.latitude
   fetchdata(longitude, latitude)
 }
 navigator.geolocation.getCurrentPosition(success, reject, {
@@ -40,11 +40,13 @@ navigator.geolocation.getCurrentPosition(success, reject, {
 const fetchdata = async (longitude, latitude) =>{
   //const url = `http://api.weatherstack.com/current?access_key=1e304563fcb2a52e6e76c0a453028095&query=${latitude},${longitude}`   ограничено
   //const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely&units=metric&appid=0f5536e73337f7ca55370176430b4b70`
+  
   const url = `https://ru.wttr.in/${latitude},${longitude}?format=j1`
   const result = await fetch(url)
   const data = await result.json().catch((e) => {
     console.log(e);
   })
-  console.log(data)
+  console.log(data.nearest_area[0].areaName[0].value)
+
   app.innerHTML += JSON.stringify(data)
 }
