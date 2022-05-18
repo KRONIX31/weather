@@ -30,10 +30,10 @@ const reject = async function(err) {
   latitude = data.latitude
   fetchdata(longitude, latitude)
 }
-navigator.geolocation.getCurrentPosition(success, reject, {
+/*navigator.geolocation.getCurrentPosition(success, reject, {
   timeout: 4000,
   enableHighAccuracy: false,
-})
+})*/
 
 
 
@@ -47,6 +47,29 @@ const fetchdata = async (longitude, latitude) =>{
     console.log(e);
   })
   console.log(data.nearest_area[0].areaName[0].value)
-
-  app.innerHTML += JSON.stringify(data)
 }
+
+
+
+const cross = document.querySelector('.svg_wrap_2')
+const searchInput = document.querySelector('.search')
+
+document.querySelector('.search').addEventListener('input', showHideCross)
+function showHideCross(){
+  if(searchInput.value){
+    cross.style.display = 'block'
+    setTimeout(() => {
+      cross.style.opacity = '1'
+    }, 10);
+  } else{
+    cross.style.opacity = '0'
+    setTimeout(() => {
+      cross.style.display = 'none'
+    }, 250);
+  }
+}
+
+cross.addEventListener('click', (e) => {
+  searchInput.value = ''
+  showHideCross()
+})

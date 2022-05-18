@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap');
+
+input[type=text]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=text]::-ms-reveal {  display: none; width : 0; height: 0; }
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
 *{
     margin: 0;
     padding: 0;
@@ -8,4 +16,89 @@
     width: 100%;
     background-color: aquamarine;
     min-height: 100vh;
+}
+.header_wrap{
+    background-color: rgb(17, 137, 167);
+}
+.search_wrap{
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.search_wrap_wrap{
+    position: relative;
+    width: 90%;
+}
+.search{
+    width: 100%;
+    height: 34px;
+    padding-left: 47px;
+    font-size: 23px;
+    border-radius: 10px;
+    background: #fff;
+}
+.search::placeholder{
+    font-size: 20px;
+}
+.svg_wrap{
+    position: absolute;
+    top: 50%;
+    width: 22px;
+    height: 22px;
+    padding-top: 6px;
+    transform: translateY(-50%);
+    padding-bottom: 6px;
+    cursor: pointer;
+}
+.svg_wrap_1{
+    left: 0;
+    padding-left: 14px;
+    border-radius: 0 0 10px 10px;
+}
+.svg_wrap_2{
+    right: 0;
+    padding-right: 14px;
+    padding-left: 8px;
+    border-radius: 10px 10px 0 0;
+    opacity: 0;
+    display: none;
+    transition: 0.25s opacity;
+}
+.header_svg{
+    width: 100%;
+    pointer-events: none;
+}
+.search_svg{
+    left: 0;
+}
+.cross_svg{
+    opacity: 0.7;
+    right: 0;
+}
+
+
+.days{
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+    font-size: 17px;
+    letter-spacing: 0.9px;
+}
+.day{
+    padding: 3px 2px 18px 2px;
+    position: relative;
+    font-family: 'Roboto Flex', sans-serif;
+}
+.day_active::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 94%;
+    height: 5px;
+    border-radius: 30px 30px 0 0;
+    background-color: #fff;
 }
